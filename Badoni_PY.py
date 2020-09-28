@@ -20,7 +20,7 @@ driver=webdriver.Chrome(executable_path='C:/Users/aless/Desktop/Badoni_PY/dipend
 
 #-------------------carica il webhook di discord------------------
 
-webhook=DiscordWebhooks('https://discord.com/api/webhooks/760050656542326785/rDFVNuo953TiTgWSqTeJG12NiggjiFjwmb7ukP6CjEApa73qCW6BEJLsgrOPLy65cAmV')  #Link webhook discord
+webhook=DiscordWebhooks("https://discord.com/api/webhooks/760050656542326785/rDFVNuo953TiTgWSqTeJG12NiggjiFjwmb7ukP6CjEApa73qCW6BEJLsgrOPLy65cAmV")  #Link webhook discord
 
 #---------------------carica l'url del sito-----------------------
 
@@ -86,14 +86,12 @@ while True:
         circolari[c] = {"titolo":getTitoli(c),"link":getLinks(c),"data":getDate(c)}
         c=c+1
         print(c)
-
     with open("ultimacirc.txt",'r') as f:
         if f.read() != circolari[0]["titolo"]:
             webhook.set_content(title=circolari[0]["titolo"],
                                 description="Data: "+circolari[0]["data"],
                                 url=circolari[0]["link"],
                                 color=0xFF0000)
-
             webhook.set_author(name="Nuova circolare")
             webhook.set_footer(text="Badoni circolari")
             webhook.send()   
@@ -101,5 +99,5 @@ while True:
 
     with open("ultimacirc.txt", 'w+') as f:
         f.write(circolari[0]["titolo"])
-
+        
 #---------------------------------------------------------------------------------------------------------------------------------
