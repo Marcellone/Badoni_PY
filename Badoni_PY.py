@@ -12,11 +12,12 @@ import time
 #---------impostazioni di selenium per i chrome webdriver---------
 
 chrome_options = Options()
-# chrome_options.add_argument("--headless") #Per farlo eseguire in background
+chrome_options.add_argument("--headless") #Per farlo eseguire in background
 chrome_options.add_argument("disable-gpu") #Per evitare bugs
 chrome_options.add_argument("log-level=3") #Solo errori (Rimuove logs inutili)
 chrome_options.add_argument("window-size=1920,1080") #Imposta dimensione finestra essendo headless
-driver=webdriver.Chrome(executable_path='chromedriver',options=chrome_options) #Load per google chrome come webdriver
+driver=webdriver.Chrome(executable_path='C:/Users/aless/Desktop/Badoni_PY/dipendenza/chromedriver',options=chrome_options) #Load per google chrome come webdriver
+chromever="85.0.4183.121"
 
 #-------------------carica il webhook di discord------------------
 
