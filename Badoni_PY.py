@@ -12,11 +12,11 @@ import time
 #---------impostazioni di selenium per i chrome webdriver---------
 
 chrome_options = Options()
-# chrome_options.add_argument("--headless") #Per farlo eseguire in background
+chrome_options.add_argument("--headless") #Per farlo eseguire in background
 chrome_options.add_argument("disable-gpu") #Per evitare bugs
-# chrome_options.add_argument("log-level=3") #Solo errori (Rimuove logs inutili)
-chrome_options.add_argument("window-size=1920,1080") #Imposta dimensione finestra essendo headless
-driver=webdriver.Chrome(executable_path="C:/Users/aless/Desktop/Badoni_PY/dipendenza/chromedriver",options=chrome_options) #Load per google chrome come webdriver
+chrome_options.add_argument("log-level=3") #Solo errori (Rimuove logs inutili)
+chrome_options.add_argument("window-size=1920,1080") #Imposta dimensione finestra 
+driver=webdriver.Chrome(executable_path='C:/Users/aless/Desktop/Badoni_PY/dipendenza/chromedriver',options=chrome_options) #Load per google chrome come webdriver
 
 #-------------------carica il webhook di discord------------------
 
@@ -79,18 +79,19 @@ def getDate(i):
 #---------------------------discord web hook----mette tutto quello che abbiamo estratto dal sito assieme------------------------
 
 while True:
-    time.sleep(120)
+    time.sleep(60)
     circolari = {}
-    for i in range(getNumeroCircolari()):
-        circolari[i] = {"titolo":getTitoli(i),"link":getLinks(i),"data":getDate(i)}
- 
+    c=0
+    for i in range(0, getNumeroCircolari()):
+        circolari[c] = {"titolo":getTitoli(c),"link":getLinks(c),"data":getDate(c)}
+        c=c+1
+        print(c)
     with open("ultimacirc.txt",'r') as f:
         if f.read() != circolari[0]["titolo"]:
             webhook.set_content(title=circolari[0]["titolo"],
                                 description="Data: "+circolari[0]["data"],
                                 url=circolari[0]["link"],
                                 color=0xFF0000)
-
             webhook.set_author(name="Nuova circolare")
             webhook.set_footer(text="Badoni circolari")
             webhook.send()   
@@ -98,5 +99,5 @@ while True:
 
     with open("ultimacirc.txt", 'w+') as f:
         f.write(circolari[0]["titolo"])
-
+        
 #---------------------------------------------------------------------------------------------------------------------------------
