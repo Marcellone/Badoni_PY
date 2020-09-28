@@ -20,7 +20,7 @@ driver=webdriver.Chrome(executable_path='C:/Users/aless/Desktop/Badoni_PY/dipend
 
 #-------------------carica il webhook di discord------------------
 
-webhook=DiscordWebhooks("https://discord.com/api/webhooks/760050656542326785/rDFVNuo953TiTgWSqTeJG12NiggjiFjwmb7ukP6CjEApa73qCW6BEJLsgrOPLy65cAmV")  #Link webhook discord
+webhook=DiscordWebhooks('https://discord.com/api/webhooks/760050656542326785/rDFVNuo953TiTgWSqTeJG12NiggjiFjwmb7ukP6CjEApa73qCW6BEJLsgrOPLy65cAmV')  #Link webhook discord
 
 #---------------------carica l'url del sito-----------------------
 
@@ -79,11 +79,14 @@ def getDate(i):
 #---------------------------discord web hook----mette tutto quello che abbiamo estratto dal sito assieme------------------------
 
 while True:
-    time.sleep(1)
+    time.sleep(60)
     circolari = {}
-    for i in range(getNumeroCircolari()):
-        circolari[i] = {"titolo":getTitoli(i),"link":getLinks(i),"data":getDate(i)}
- 
+    c=0
+    for i in range(0, getNumeroCircolari()):
+        circolari[c] = {"titolo":getTitoli(c),"link":getLinks(c),"data":getDate(c)}
+        c=c+1
+        print(c)
+
     with open("ultimacirc.txt",'r') as f:
         if f.read() != circolari[0]["titolo"]:
             webhook.set_content(title=circolari[0]["titolo"],
