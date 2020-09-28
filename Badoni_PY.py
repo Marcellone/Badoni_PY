@@ -17,6 +17,7 @@ chrome_options.add_argument("disable-gpu") #Per evitare bugs
 chrome_options.add_argument("log-level=3") #Solo errori (Rimuove logs inutili)
 chrome_options.add_argument("window-size=1920,1080") #Imposta dimensione finestra 
 driver=webdriver.Chrome(executable_path='C:/Users/aless/Desktop/Badoni_PY/dipendenza/chromedriver',options=chrome_options) #Load per google chrome come webdriver
+
 #-------------------carica il webhook di discord------------------
 
 webhook=DiscordWebhooks("https://discord.com/api/webhooks/760050656542326785/rDFVNuo953TiTgWSqTeJG12NiggjiFjwmb7ukP6CjEApa73qCW6BEJLsgrOPLy65cAmV")  #Link webhook discord
