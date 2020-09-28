@@ -4,7 +4,9 @@ Benvenuto in Badoni_PY, uno scraper per le circolari che invia notifiche quando 
 
 ------------------------------------------------------------------------------------------------------------
 
- Changelog 1 del 23/02/2020
+# *Changelog list senza file, pubblicati dalla 1.3*
+
+Changelog 1 del 23/02/2020
    - Programma operativo e terminato
 
  Changelog 1.1 del 15/05/2020
@@ -15,3 +17,5 @@ Benvenuto in Badoni_PY, uno scraper per le circolari che invia notifiche quando 
   
  Changelog 1.3 del 28/09/2020
    - Creata dipendenza del codice, inserito l'ultimo webdriver
+
+------------------------------------------------------------------------------------------------------------
