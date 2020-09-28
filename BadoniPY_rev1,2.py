@@ -86,7 +86,7 @@ while True:
         circolari[c] = {"titolo":getTitoli(c),"link":getLinkz(c),"data":getDate(c)}
         c = c+1
  
-    f = open('mister.txt','r')
+    f = open('ultimacirc.txt','r')
     if f.read() != circolari[0]["titolo"]:
         webhook.set_content(title=circolari[0]["titolo"], description='Data: '+circolari[0]["data"], \
         url=circolari[0]["link"], color=0xFF0000)
@@ -94,7 +94,7 @@ while True:
         webhook.set_footer(text='Badoni circolari')
         webhook.send()   
     f.close()
-    f = open("mister.txt", "w+")
+    f = open("ultimacirc.txt", "w+")
     f.write(circolari[0]["titolo"])
     f.close()
 
