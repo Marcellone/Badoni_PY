@@ -30,7 +30,7 @@ driver.get("https://www.iisbadoni.edu.it/categoria/circolari") #Url da caricare
 
 def getNumeroCircolari():
     n = 0
-    for i in driver.find_elements_by_xpath("//span[@class="field-content"]"):
+    for i in driver.find_elements_by_xpath("//span[@class='field-content']"):
         try:
             titolo = i.find_element_by_xpath(".//a").text
             if titolo != "Leggi tutto ...":
@@ -43,7 +43,7 @@ def getNumeroCircolari():
 
 def getTitoli(i):
     titoli = []
-    for l in driver.find_elements_by_xpath("//span[@class="field-content"]"):
+    for l in driver.find_elements_by_xpath("//span[@class='field-content']"):
         try:
             titolo = l.find_element_by_xpath(".//a").text
             if titolo != "Leggi tutto ...":
@@ -57,7 +57,7 @@ def getTitoli(i):
 
 def getLinks(i):
     links = []    
-    for l in driver.find_elements_by_xpath("//span[@class="field-content"]"):
+    for l in driver.find_elements_by_xpath("//span[@class='field-content']"):
         try:
             link = l.find_element_by_xpath(".//a").get_attribute("href")
             if link != "Leggi tutto ...":
@@ -70,7 +70,7 @@ def getLinks(i):
 
 def getDate(i):
     date = []
-    for l in driver.find_elements_by_xpath("//span[@class="field-content"]"):
+    for l in driver.find_elements_by_xpath("//span[@class='field-content']"):
         data = l.text
         if data != "Leggi tutto ..." and len(data) == 10:
             date.append(data)
