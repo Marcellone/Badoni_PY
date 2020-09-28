@@ -17,7 +17,6 @@ chrome_options.add_argument("disable-gpu") #Per evitare bugs
 chrome_options.add_argument("log-level=3") #Solo errori (Rimuove logs inutili)
 chrome_options.add_argument("window-size=1920,1080") #Imposta dimensione finestra essendo headless
 driver=webdriver.Chrome(executable_path='C:/Users/aless/Desktop/Badoni_PY/dipendenza/chromedriver',options=chrome_options) #Load per google chrome come webdriver
-chromever="85.0.4183.121"
 
 #-------------------carica il webhook di discord------------------
 
@@ -87,7 +86,7 @@ while True:
         circolari[c] = {"titolo":getTitoli(c),"link":getLinkz(c),"data":getDate(c)}
         c = c+1
  
-    f = open('ultimacirc.txt','r')
+    f = open('C:/Users/aless/Desktop/Badoni_PY/dipendenza/ultimacirc.txt','r')
     if f.read() != circolari[0]["titolo"]:
         webhook.set_content(title=circolari[0]["titolo"], description='Data: '+circolari[0]["data"], \
         url=circolari[0]["link"], color=0xFF0000)
@@ -95,7 +94,7 @@ while True:
         webhook.set_footer(text='Badoni circolari')
         webhook.send()   
     f.close()
-    f = open("ultimacirc.txt", "w+")
+    f = open("C:/Users/aless/Desktop/Badoni_PY/dipendenza/ultimacirc.txt", "w+")
     f.write(circolari[0]["titolo"])
     f.close()
 
