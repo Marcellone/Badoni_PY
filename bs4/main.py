@@ -43,7 +43,8 @@ def sendWebhook(entry):         #manda il webhook a discord
                         color=0xFF0000)
     webhook.set_author(name="Nuova circolare")
     webhook.set_footer(text="Badoni circolari")
-    webhook.send()   
+    webhook.send()
+    time.sleep(2)
     return True
 
 def sendStartWebhook():
