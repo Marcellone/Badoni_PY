@@ -5,14 +5,10 @@ import time
 from bs4 import BeautifulSoup
 from discord_webhooks import DiscordWebhooks
 webhook=DiscordWebhooks("https://discord.com/api/webhooks/760050656542326785/rDFVNuo953TiTgWSqTeJG12NiggjiFjwmb7ukP6CjEApa73qCW6BEJLsgrOPLy65cAmV")
+urlBadoni = "https://www.iisbadoni.edu.it/categoria/circolari"
 
-while True:
 
-    with open("lastEntry.txt", "r") as f:
-        lastEntry = f.read()
-    isLast = False
-
-    urlBadoni = "https://www.iisbadoni.edu.it/categoria/circolari"
+def scrape():
     req = requests.get(urlBadoni)
     soup = BeautifulSoup(req.text, "lxml")
 
@@ -37,25 +33,46 @@ while True:
                           "data": dataEmissione,
                           "url": link})
 
-    for item in circolari:
-        if item["titolo"] == lastEntry:
-            print("non ci sono circolari")
-            isLast = True
+    return circolari
 
 
-        if not isLast:
-            print(item)
-            webhook.set_content(title=item["titolo"],
-                                description=item["sommario"]+"\nData: "+item["data"],
-                                url=item["url"],
-                                color=0xFF0000)
-            webhook.set_author(name="Nuova circolare")
-            webhook.set_footer(text="Badoni circolari")
-            webhook.send()   
-            print("webhook inviato")
-            print("\n\n")
-            time.sleep(1)
+def sendWebhook(entry):
+    webhook.set_content(title=entry["titolo"],
+                        description=entry["sommario"]+"\nData: "+entry["data"],
+                        url=entry["url"],
+                        color=0xFF0000)
+    webhook.set_author(name="Nuova circolare")
+    webhook.set_footer(text="Badoni circolari")
+    webhook.send()   
+    return True
 
+
+def isLast(url):
+    with open("lastEntry.txt", "r") as f:
+        lastEntry = f.read()
+    return url == lastEntry
+
+
+def setLast(url):
     with open("lastEntry.txt", "w+") as f:
-        f.write(circolari[0]["titolo"])
-    time.sleep(240) 
+        f.write(url)
+    return True
+
+
+while True:
+    print("\n\nprogram started")
+    isNew = False
+    scraped = scrape()
+    print("\n\nscraped")
+    for entry in reversed(scraped):
+        if isNew:
+            if sendWebhook(entry):
+                print("\n\nwebhhok sent\n")
+                print(entry)
+        if isLast(entry["url"]):
+            isNew = True
+
+    setLast(scraped[0]["url"])
+    print("\n\nwrited last entry")
+    time.sleep(240)
+
