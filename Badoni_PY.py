@@ -78,8 +78,24 @@ def getDate(i):
 
 #---------------------------discord web hook----mette tutto quello che abbiamo estratto dal sito assieme------------------------
 
+def StartMessage():
+    webhook.set_content(title="**lo script sta runnando**",
+                                description="_Script in selenium, made by Marcellone_",
+                                url="https://github.com/Marcellone/Badoni_PY",
+                                color=0x00FF00)
+    webhook.set_author(name="Badoni_PY ver 1.4")
+    webhook.set_footer(text="Badoni circolari")
+    webhook.send()   
+    return True 
+
+#---------------------------------------------------------------------------------------------------------------------------------
+
+if StartMessage():
+  print("webhook di start inviato")
+
+#---------------------------------------------------------------------------------------------------------------------------------
+
 while True:
-    time.sleep(60)
     circolari = {}
     c=0
     for i in range(0, getNumeroCircolari()):
@@ -91,7 +107,7 @@ while True:
             webhook.set_content(title=circolari[0]["titolo"],
                                 description="Data: "+circolari[0]["data"],
                                 url=circolari[0]["link"],
-                                color=0xFF0000)
+                                color=0x9900FF)
             webhook.set_author(name="Nuova circolare")
             webhook.set_footer(text="Badoni circolari")
             webhook.send()   
@@ -99,5 +115,7 @@ while True:
 
     with open("ultimacirc.txt", 'w+') as f:
         f.write(circolari[0]["titolo"])
+
+    time.sleep(60)
         
 #---------------------------------------------------------------------------------------------------------------------------------
