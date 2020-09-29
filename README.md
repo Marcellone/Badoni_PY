@@ -10,17 +10,12 @@ Tutte le versioni sono state scritte per python 3
 
 Il progetto nasce durante l'inizio della quarantena, studiato per inviare notifiche quasi immediate riguardo a pubblicazioni di circolari sul sito
 
-## Versione con Selenium
 
-### Dipendenze
+## Versione con Selenium
 
 `pip install -r requirements.txt`
 
-### Esecuzione
-
 `python Badoni_PY.py`
-
-esegui `Badoni_PY.py` con python 3
 
 
 ## versione con BeautifulSoup4
