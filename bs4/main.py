@@ -8,7 +8,7 @@ webhook=DiscordWebhooks("https://discord.com/api/webhooks/760050656542326785/rDF
 urlBadoni = "https://www.iisbadoni.edu.it/categoria/circolari"
 
 
-def scrape():
+def scrape():       #esegue lo scrape del sito e ritorna una lista di circolari dalla più recente alla più vecchia
     req = requests.get(urlBadoni)
     soup = BeautifulSoup(req.text, "lxml")
 
@@ -36,7 +36,7 @@ def scrape():
     return circolari
 
 
-def sendWebhook(entry):
+def sendWebhook(entry):         #manda il webhook a discord
     webhook.set_content(title=entry["titolo"],
                         description=entry["sommario"]+"\nData: "+entry["data"],
                         url=entry["url"],
@@ -46,31 +46,43 @@ def sendWebhook(entry):
     webhook.send()   
     return True
 
+def sendStartWebhook():
+    webhook.set_content(title="Badoni_PY",
+                        description="Script con BeautifulSoup4 avviato",
+                        url="https://github.com/Marcellone/Badoni_PY",
+                        color=0x00FF00)
+    webhook.set_author(name="Script avviato")
+    webhook.set_footer(text="Badoni circolari")
+    webhook.send()   
+    return True
 
-def isLast(url):
+def isLast(url):            #ritorna vero se l'url è l'ultimo inviato
     with open("lastEntry.txt", "r") as f:
         lastEntry = f.read()
     return url == lastEntry
 
 
-def setLast(url):
+def setLast(url):           #salva l'url come ultimo inviato
     with open("lastEntry.txt", "w+") as f:
         f.write(url)
     return True
 
+
+if sendStartWebhook():
+    print("webhook starting inviato")
 
 while True:
     print("\n\nprogram started")
     isNew = False
     scraped = scrape()
     print("\n\nscraped")
-    for entry in reversed(scraped):
-        if isNew:
+    for entry in reversed(scraped):     #ciclo for con lista circolari invertita
+        if isNew:                       #se le circolari sono nuove, le invia
             if sendWebhook(entry):
                 print("\n\nwebhhok sent\n")
                 print(entry)
         if isLast(entry["url"]):
-            isNew = True
+            isNew = True                #se è l'ultima circolare, quelle dopo saranno nuove
 
     setLast(scraped[0]["url"])
     print("\n\nwrited last entry")
