@@ -4,7 +4,11 @@ import requests
 import time
 from bs4 import BeautifulSoup
 from discord_webhooks import DiscordWebhooks
-webhook=DiscordWebhooks("https://discord.com/api/webhooks/760050656542326785/rDFVNuo953TiTgWSqTeJG12NiggjiFjwmb7ukP6CjEApa73qCW6BEJLsgrOPLy65cAmV")
+with open("webhook") as f:
+    webhookLink = f.read()
+    webhookLink = webhookLink.rstrip('\n')
+    webhook=DiscordWebhooks(webhookLink)
+
 urlBadoni = "https://www.iisbadoni.edu.it/categoria/circolari"
 
 

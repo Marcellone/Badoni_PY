@@ -17,21 +17,18 @@ Il progetto nasce durante l'inizio della quarantena, studiato per inviare notifi
 
 `python Badoni_PY.py`
 
-`richiede chrome webdriver, scricabili da https://chromedriver.chromium.org/downloads, in base alla versione di chrome installata.`
+richiede chrome webdriver, scricabili da `https://chromedriver.chromium.org/downloads`, in base alla versione di chrome installata.
 
-* `Inserire la path del webdriver (es: C:/usr/Gianni/desktop/chromedriver.exe) [Line 19]`
-  ```python
-   driver=webdriver.Chrome(executable_path='webdriver_path',options=chrome_options)
-  ```
-  
-* `Inserire il link del webhook ottenibile da discord [Line 23]`
-  ```python
-   webhook=DiscordWebhooks("https://discord.com/api/webhooks/xxxxx/xxxxx")
-  ```
+- Inserire la path del webdriver (es: `C:/usr/Gianni/desktop/chromedriver.exe`) [Line 19]
+  `driver=webdriver.Chrome(executable_path='webdriver_path',options=chrome_options)`
 
-## versione con BeautifulSoup4
+inserire il link del webhook nel file `webhook`
+
+## versione con BeautifulSoup4 (più rapida)
 
 `cd bs4`
+
+inserire il link del webhook nel file `webhook`
 
 `pip install -r requirements.txt`
 

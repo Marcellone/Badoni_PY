@@ -20,7 +20,10 @@ driver=webdriver.Chrome(executable_path='webdriver_path',options=chrome_options)
 
 #-------------------carica il webhook di discord------------------
 
-webhook=DiscordWebhooks("https://discord.com/api/webhooks/xxxxx/xxxxx")  #Link webhook discord
+with open("webhook") as f:
+    webhookLink = f.read()
+    webhookLink = webhookLink.rstrip('\n')
+    webhook=DiscordWebhooks(webhookLink)    #Link webhook discord
 
 #---------------------carica l'url del sito-----------------------
 
