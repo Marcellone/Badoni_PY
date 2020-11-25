@@ -82,7 +82,7 @@ def getDate(i):
 #---------------------------discord web hook----mette tutto quello che abbiamo estratto dal sito assieme------------------------
 
 def StartMessage():
-    webhook.set_content(title="**Badoni_PY ver 1.4**",
+    webhook.set_content(title="**Badoni_PY ver 1.5**",
                                 description="_Script in selenium, made by Marcellone_",
                                 url="https://github.com/Marcellone/Badoni_PY",
                                 color=0x00FF00)
