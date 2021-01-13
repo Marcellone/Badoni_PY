@@ -34,3 +34,11 @@ inserire il link del webhook nel file `webhook`
 
 `python main.py`
  
+ 
+# Link utili
+
+- matrix community: [https://matrix.to/#/+badonipy:matrix.org](https://matrix.to/#/+badonipy:matrix.org)
+- discord server: [https://discord.gg/kFyuEECr6R](https://discord.gg/kFyuEECr6R)
+
+Entrambi hanno un bridge, quindi i messaggi vengono inviati in entrambi i server.
+Nel server discord è presente il feed per l'I.I.S. A. Badoni.
