@@ -11,6 +11,7 @@ with open("webhook") as f:
 
 urlBadoni = "https://www.iisbadoni.edu.it/categoria/circolari"
 
+file = open("lastEntry.txt", "r+")
 
 def scrape():       #esegue lo scrape del sito e ritorna una lista di circolari dalla più recente alla più vecchia
     req = requests.get(urlBadoni)
@@ -24,7 +25,7 @@ def scrape():       #esegue lo scrape del sito e ritorna una lista di circolari 
             if head:
                 if head.text != "Leggi tutto ...":
                     titolo = head.text
-        
+
                 elif head.text == "Leggi tutto ...":
                     link = "https://www.iisbadoni.edu.it/" + head["href"]
 
@@ -62,14 +63,16 @@ def sendStartWebhook():
     return True
 
 def isLast(url):            #ritorna vero se l'url è l'ultimo inviato
-    with open("lastEntry.txt", "r") as f:
-        lastEntry = f.read()
+#    with open("lastEntry.txt", "r") as f:
+#        lastEntry = f.read()
+    lastEntry = file.read()
     return url == lastEntry
 
 
 def setLast(url):           #salva l'url come ultimo inviato
-    with open("lastEntry.txt", "w+") as f:
-        f.write(url)
+#    with open("lastEntry.txt", "w+") as f:
+#        f.write(url)
+    file.write(url)
     return True
 
 
