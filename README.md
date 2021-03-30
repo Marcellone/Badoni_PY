@@ -17,7 +17,7 @@ Il progetto nasce durante l'inizio della quarantena, studiato per inviare notifi
 
 `python Badoni_PY.py`
 
-richiede chrome webdriver, scricabili da `https://chromedriver.chromium.org/downloads`, in base alla versione di chrome installata.
+richiede chrome webdriver, scaricabili da `https://chromedriver.chromium.org/downloads`, in base alla versione di chrome installata.
 
 - Inserire la path del webdriver (es: `C:/usr/Gianni/desktop/chromedriver.exe`) [Line 19]
   `driver=webdriver.Chrome(executable_path='webdriver_path',options=chrome_options)`
